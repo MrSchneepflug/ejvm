@@ -1,0 +1,7 @@
+language: node_js
+node_js: node
+after_success: yarn coverage
+branches:
+  only:
+    - master
+    - /^greenkeeper/.*$/
