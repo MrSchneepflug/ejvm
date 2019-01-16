@@ -1,0 +1,14 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "rules": {
+        "trailing-comma": false
+    },
+    "linterOptions": {
+        "exclude": [
+            "src/example/example.ts"
+        ]
+    }
+}
