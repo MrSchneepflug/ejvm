@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/schemas/employee.json",
+  "type": "object",
+  "required": ["department", "person"],
+  "properties": {
+    "department": {
+      "type": "string"
+    },
+    "person": {
+      "$ref": "http://example.com/schemas/person.json"
+    }
+  }
+}
