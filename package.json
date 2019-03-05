@@ -2,7 +2,15 @@
   "name": "ejvm",
   "version": "1.0.0",
   "description": "Validates JSON payloads",
-  "keywords": ["express", "json", "validator", "middleware", "json-schema", "draft-07", "ajv"],
+  "keywords": [
+    "express",
+    "json",
+    "validator",
+    "middleware",
+    "json-schema",
+    "draft-07",
+    "ajv"
+  ],
   "main": "dist/validate.js",
   "types": "dist/validate.d.ts",
   "files": [
@@ -10,6 +18,11 @@
     "dist/validate.d.ts"
   ],
   "author": "Mr. Schneepflug <mrschneepflug@not-my-problem.de>",
+  "homepage": "https://github.com/MrSchneepflug/ejvm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrSchneepflug/ejvm.git"
+  },
   "license": "ISC",
   "scripts": {
     "lint": "tslint --project .",
