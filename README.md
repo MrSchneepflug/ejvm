@@ -100,7 +100,7 @@ import bodyParser from "body-parser";
 Use the [body-parser](https://github.com/expressjs/body-parser) middleware before any route definition:
 
 ```js
-use(bodyParser.json());
+app.use(bodyParser.json());
 ```
 
 Use the schema to create a new validation-middleware by calling the `validate` function.
