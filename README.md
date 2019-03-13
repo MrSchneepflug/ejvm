@@ -19,6 +19,9 @@ yarn add ejvm
 ```
 
 > **Note:**
+> EJVM supports **draft-07** only!
+
+> **Note:**
 > The middleware expects the `req.body` property to contain proper JSON.
 > Use the [body-parser](https://github.com/expressjs/body-parser) middleware to handle this for you.
 > Keep in mind that you **must** include the content-type header `Content-Type: application/json` in
@@ -132,6 +135,63 @@ curl \
     -d '{"name": "some name", "age": 65}' \
     http://localhost:3000/persons
 ```
+
+### Using multiple schemas
+
+Sometimes it makes sense to use multiple schemas. For example if you want to reuse a specific schema several times.
+
+#### Example
+
+##### employee.json
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/schemas/employee.json",
+  "type": "object",
+  "required": ["department", "person"],
+  "properties": {
+    "department": {
+      "type": "string"
+    },
+    "person": {
+      "$ref": "http://example.com/schemas/person.json"
+    }
+  }
+}
+
+```
+
+##### person.json
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/schemas/person.json",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "age": {
+      "type": "number"
+    }
+  }
+}
+```
+
+In this case you would pass an array with any additional schema as the second parameter to `validate()`.
+
+```js
+const employeeSchema = require("/path/to/employee.json");
+const personSchema = require("/path/to/person.json");
+
+app.post("/employees", validate(employeeSchema, [personSchema]), (req: Request, res: Response): void => {
+    // ...
+});
+```
+
+> **Note:**
+> Pass the configuration object for EJVM as third parameter to `validate()` if you want to use additional schemas.
 
 ## Tests
 
