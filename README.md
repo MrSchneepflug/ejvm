@@ -119,9 +119,17 @@ Lastly, in order to catch the validation-errors you need to have an error-handle
 ```js
 app.use((err: Error | JsonSchemaValidationError, req: Request, res: Response, next: NextFunction): void => {
     if (isJsonSchemaValidationError(err)) {
-        // handle the error here
+        // handle the error here, e.g.:
+        res.status(400);
+        res.json({
+            statusText: "Bad Request",
+            jsonSchemaValidation: true,
+            validation: err.validationErrors,
+        });
     } else {
-        next();
+        // this is not a JsonSchemaValidationError, so do not handle it here
+        // and let the next middleware/finalhandler handle it
+        next(err);
     }
 });
 ```
